@@ -1,1 +1,461 @@
-111
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「社區長照」行銷規劃提案｜臺灣職能治療學會 長照委員會</title>
+<style>
+  :root{
+    --primary:#1a6e5f; --primary-dark:#0f4a40; --primary-light:#e6f2ef;
+    --accent:#e8862e; --accent-light:#fdf1e4;
+    --ink:#2b2b2b; --muted:#6b7280; --line:#e5e7eb; --bg:#f7f8f7; --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:64px}
+  body{font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;-webkit-text-size-adjust:100%}
+  a{color:var(--primary)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+  header.hero{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;padding:56px 0 44px}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 14px;font-size:.85rem;letter-spacing:.1em;margin-bottom:16px}
+  .hero h1{font-size:2rem;line-height:1.35;margin-bottom:12px}
+  .hero p.sub{opacity:.92;max-width:640px}
+  .hero .meta{margin-top:20px;font-size:.9rem;opacity:.85}
+
+  nav.toc{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+  nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none}
+  nav.toc .wrap::-webkit-scrollbar{display:none}
+  nav.toc a{white-space:nowrap;padding:14px;font-size:.92rem;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;transition:color .15s}
+  nav.toc a:hover,nav.toc a.active{color:var(--primary);border-bottom-color:var(--primary)}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table-scroll table{min-width:620px}
+
+  section{padding:48px 0 8px}
+  .sec-label{color:var(--accent);font-weight:700;font-size:.85rem;letter-spacing:.15em}
+  h2{font-size:1.5rem;color:var(--primary-dark);margin:6px 0 18px}
+  h3{font-size:1.1rem;color:var(--primary-dark);margin:20px 0 10px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+  .grid{display:grid;gap:16px}
+  .grid.c3{grid-template-columns:repeat(3,1fr)}
+  .grid.c2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:760px){
+    .grid.c3,.grid.c2{grid-template-columns:1fr}
+    #kpi .grid.c3{grid-template-columns:repeat(2,1fr)}
+    .hero h1{font-size:1.45rem}
+    header.hero{padding:40px 0 32px}
+    section{padding:36px 0 6px}
+    .card{padding:18px 16px;border-radius:12px}
+    h2{font-size:1.3rem}
+    table{font-size:.88rem}
+    th,td{padding:8px 10px}
+  }
+
+  .pillar{border-top:4px solid var(--primary);position:relative}
+  .pillar .num{position:absolute;top:14px;right:18px;font-size:2rem;font-weight:800;color:var(--primary-light)}
+  .pillar h3{margin-top:0}
+  .badge{display:inline-block;font-size:.75rem;font-weight:700;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:middle}
+  .badge.done{background:#e7f6ec;color:#1a7f37}
+  .badge.doing{background:var(--accent-light);color:var(--accent)}
+
+  ul.clean{list-style:none}
+  ul.clean li{padding:8px 0 8px 26px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li::before{content:"✓";position:absolute;left:2px;color:var(--primary);font-weight:700}
+
+  table{width:100%;border-collapse:collapse;font-size:.95rem}
+  th{background:var(--primary-light);color:var(--primary-dark);text-align:left;padding:10px 12px}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+
+  .timeline{position:relative;padding-left:28px}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--primary-light)}
+  .t-item{position:relative;padding:0 0 22px 8px}
+  .t-item::before{content:"";position:absolute;left:-25px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--primary);border:3px solid var(--primary-light)}
+  .t-item .when{font-weight:700;color:var(--primary-dark)}
+  .t-item .what{color:var(--ink)}
+
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font-size:.9rem;cursor:pointer;color:var(--muted)}
+  .filters button.active{background:var(--primary);border-color:var(--primary);color:#fff}
+  .topics{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.topics{grid-template-columns:1fr}}
+  .topic{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .topic .cat{font-size:.75rem;font-weight:700;border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .cat.role{background:#e6f2ef;color:#1a6e5f}
+  .cat.edu{background:#e9f0fb;color:#2a5aa8}
+  .cat.policy{background:#fdf1e4;color:#c06a12}
+  .cat.trend{background:#f4e9f7;color:#8b3fa8}
+  .topic h4{font-size:1rem;margin-bottom:6px}
+  .topic p{font-size:.88rem;color:var(--muted)}
+  .topic .fit{font-size:.8rem;margin-top:8px;color:var(--primary-dark)}
+
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:14px 0}
+  summary{cursor:pointer;font-weight:700;color:var(--primary-dark)}
+  pre.letter{white-space:pre-wrap;font-family:inherit;background:var(--bg);border-radius:10px;padding:16px;margin-top:12px;font-size:.92rem;line-height:1.8}
+  .copy-btn{margin-top:10px;background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:.9rem;cursor:pointer}
+  .copy-btn:hover{background:var(--primary-dark)}
+
+  .kpi{ text-align:center;padding:20px 12px}
+  .kpi .n{font-size:1.6rem;font-weight:800;color:var(--primary)}
+  .kpi .l{font-size:.85rem;color:var(--muted);margin-top:4px}
+
+  .callout{background:var(--accent-light);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0;font-size:.95rem}
+
+  footer{margin-top:48px;padding:28px 0;background:var(--primary-dark);color:#cfe5e0;font-size:.85rem;text-align:center}
+  footer a{color:#fff}
+  @media print{nav.toc{display:none}.filters{display:none}.topic{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">長照委員會 · 行銷企劃提案</span>
+    <h1>「社區長照」行銷規劃<br>讓社會看見職能治療的社區價值</h1>
+    <p class="sub">以「創新照顧 ĀnkěCare 專欄」×「學會社群矩陣（FB／IG／Threads）」為雙引擎，搭配 OT 社群夥伴協作與系統化議題庫，建立學會在社區長照領域的專業聲量。</p>
+    <div class="meta">提案人：鍾孟修 Matt（愛迪樂治療所）｜社團法人臺灣職能治療學會 長照委員會｜2026 年 7 月</div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#why">緣起與目標</a>
+    <a href="#pillars">四大策略</a>
+    <a href="#ankecare">Ankecare 專欄</a>
+    <a href="#fb">社群矩陣</a>
+    <a href="#collab">夥伴協作</a>
+    <a href="#ai">AI 產製</a>
+    <a href="#topics">議題庫</a>
+    <a href="#timeline">時程</a>
+    <a href="#kpi">KPI</a>
+    <a href="#todo">待學會協助</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="why">
+  <div class="sec-label">01 WHY</div>
+  <h2>緣起與目標</h2>
+  <div class="card">
+    <p>台灣已進入超高齡社會，<strong>長照 3.0 自 2026 年正式實施</strong>，八大重點中的「共生社區促進健康老化」「積極長照復能」「導入智慧照顧」等，都是職能治療的核心戰場。然而社會大眾（甚至長照體系內部）對 OT 在社區長照中的角色認知仍有限，常與物理治療、照服員混淆。</p>
+    <p style="margin-top:10px">本規劃的任務：<strong>在政策紅利期，把「社區長照 × 職能治療」的專業論述權建立起來</strong>，同時支援委員會既有工作（LV2/LV3 社區課程、社區指導教師、11/1 社區交流、健康台灣深耕計畫）的對外溝通。</p>
+  </div>
+  <div class="grid c3">
+    <div class="card"><h3>目標一：專業聲量</h3><p style="font-size:.92rem">以學會名義在產業媒體固定發聲，成為社區長照議題的引用來源。</p></div>
+    <div class="card"><h3>目標二：大眾認知</h3><p style="font-size:.92rem">讓民眾與家屬知道「復能找 OT」，看得懂、找得到、用得上。</p></div>
+    <div class="card"><h3>目標三：動員會員</h3><p style="font-size:.92rem">為社區課程、認證、交流活動導流報名，擴大會員參與。</p></div>
+  </div>
+</section>
+
+<section id="pillars">
+  <div class="sec-label">02 STRATEGY</div>
+  <h2>四大策略支柱</h2>
+  <div class="grid c2">
+    <div class="card pillar"><span class="num">1</span>
+      <h3>媒體專欄矩陣<span class="badge done">Ankecare 已談成</span></h3>
+      <p style="font-size:.92rem">以「社團法人臺灣職能治療學會」名義於 <a href="https://www.ankecare.com/columnist/list" target="_blank">創新照顧 ĀnkěCare</a> 開設專欄，邀請長照領域職能治療師供稿並備註作者來源；並接續洽談<strong>《聯合報》系（元氣網／橘世代）</strong>擴大大眾媒體版圖。</p>
+    </div>
+    <div class="card pillar"><span class="num">2</span>
+      <h3>社群矩陣經營<span class="badge doing">進行中</span></h3>
+      <p style="font-size:.92rem">以<a href="https://www.facebook.com/profile.php?id=100064829017186" target="_blank">學會 FB 粉專</a>為主陣地，延伸 Instagram 與 Threads，依平台屬性分工擴散：衛教圖卡、活動宣傳、時事互動。</p>
+    </div>
+    <div class="card pillar"><span class="num">3</span>
+      <h3>OT 社群夥伴協作</h3>
+      <p style="font-size:.92rem">與既有 OT 粉專／KOL（吱吱復健、OT莉莉、長照創業筆記等）及各縣市公會合作互推，聯名企劃長照議題，借力既有社群放大聲量。</p>
+    </div>
+    <div class="card pillar"><span class="num">4</span>
+      <h3>議題庫 × 內容日曆</h3>
+      <p style="font-size:.92rem">四大議題軸線＋年度節點日曆，讓專欄與社群「一魚多吃」：一篇專欄拆成 3–5 則貼文素材，跨平台改寫再利用。</p>
+    </div>
+  </div>
+  <div class="callout">內容流水線：<strong>議題庫選題 → 邀稿長照 OT 撰寫（備註作者來源）→ 專欄刊出（深度）→ 改寫為社群圖卡/短文（擴散）→ 夥伴粉專互推（放大）→ 導流回課程與活動（轉換）</strong></div>
+</section>
+
+<section id="ankecare">
+  <div class="sec-label">03 COLUMN</div>
+  <h2>Ankecare 創新照顧專欄</h2>
+  <div class="card">
+    <h3 style="margin-top:0">現況</h3>
+    <p>已完成洽談，媒體方<strong>確認同意</strong>以學會名義開設專欄（同平台已有台灣護理學會、臺灣長期照顧物理治療學會等專業團體專欄，OT 不能缺席）。待學會提供 5 項資料建立作者頁面後，媒體窗口將說明專欄作家權利義務與交稿流程，屆時提供 Line 給學會窗口直接對接。</p>
+    <h3>建立作者頁面所需 5 項資料</h3>
+    <ul class="clean">
+      <li>學會 Logo（解析度清晰，檔案 400KB 以上，作為作者頭貼）</li>
+      <li>學會名稱與簡介（100 字以內）</li>
+      <li>收件地址（含郵遞區號）</li>
+      <li>聯絡電話</li>
+      <li>電子郵件信箱（Email）</li>
+    </ul>
+    <details>
+      <summary>📋 給學會秘書的信件草稿（點開複製）</summary>
+      <pre class="letter" id="letterText">學會秘書您好：
+
+關於之前幫學會洽談加入媒體專欄（創新照顧 Ankecare https://www.ankecare.com/columnist/list ）的事宜，目前對方已經確認同意囉！後續將會以「社團法人臺灣職能治療學會」的名義開設專欄。
+
+為了建立學會的專欄作者頁面，需要請學會協助提供以下資料，我再統一轉交給媒體窗口對接：
+
+1. 學會 Logo（建議解析度清晰、臉部清楚大小 400KB 以上，會作為作者頭貼使用）
+2. 學會名稱與簡介（自我介紹 100 字以內）
+3. 收件地址（含郵遞區號）
+4. 聯絡電話
+5. 電子郵件信箱 (Email)
+
+另外，媒體窗口有提到，之後會再詳細說明專欄作家的權利義務以及未來的交稿流程。等拿到上述資料並建立好頁面後，我再把對方的 Line 提供給學會窗口，方便你們直接對接後續的交稿事宜。
+
+再麻煩學會協助準備這五項資料囉，謝謝！</pre>
+      <button class="copy-btn" onclick="copyLetter()">複製信件內容</button>
+    </details>
+    <h3>邀稿與供稿機制</h3>
+    <table>
+      <tr><th>項目</th><th>建議做法</th></tr>
+      <tr><td>頻率</td><td>每月 1 篇為基本盤（穩定＞爆量），順稿時每月 2 篇</td></tr>
+      <tr><td>作者群</td><td>以學會名義開設專欄，<strong>邀請長照領域職能治療師供稿，文末備註作者姓名與服務單位</strong>——兼顧學會品牌與作者個人榮譽感，也降低單一作者的產出壓力</td></tr>
+      <tr><td>審稿</td><td>委員會設 1 位專欄主編（建議由行銷負責人擔任）＋主委終審，確保代表學會立場</td></tr>
+      <tr><td>字數/形式</td><td>1,500–2,500 字，搭配 1–2 張圖表或現場照片（需授權）</td></tr>
+      <tr><td>再利用</td><td>每篇專欄產出後 1 週內，改寫為社群圖卡系列＋摘要貼文，跨平台擴散</td></tr>
+    </table>
+    <h3>專欄內容導流策略<span class="badge doing">評估中</span></h3>
+    <p style="font-size:.95rem;margin-bottom:10px">社群平台演算法會<strong>降低外部連結貼文的觸及率</strong>，因此不建議直接把專欄連結貼上社群。可評估的替代做法：</p>
+    <ul class="clean">
+      <li>「重製優先」：將專欄重點改寫成原生圖卡／短文，連結改放<strong>留言區或個人簡介</strong></li>
+      <li>Threads／限時動態放連結（觸及懲罰較低），主貼文維持純內容</li>
+      <li>建立 Line 社群或電子報，作為連結導流的自有管道</li>
+      <li>每月一則「專欄精選」彙整貼文，集中導流、減少連結貼文次數</li>
+      <li>A/B 觀察各做法觸及數據 1–2 個月後，定版導流 SOP</li>
+    </ul>
+    <h3>下一步：《聯合報》系專欄<span class="badge doing">待洽談</span></h3>
+    <p style="font-size:.95rem">Ankecare 觸及的是長照產業圈；<strong>《聯合報》系（元氣網、橘世代等健康／熟齡頻道）觸及的是一般大眾與家屬</strong>，兩者互補。建議待 Ankecare 專欄穩定運作 2–3 個月、累積作品集後，以相同模式（學會名義＋長照 OT 邀稿＋備註作者來源）接洽，提高談判籌碼。此項由行銷負責人先行探詢窗口與合作條件，再回報委員會決議。</p>
+  </div>
+</section>
+
+<section id="fb">
+  <div class="sec-label">04 SOCIAL</div>
+  <h2>社群矩陣：FB × IG × Threads</h2>
+  <div class="card">
+    <h3 style="margin-top:0">平台分工</h3>
+    <div class="table-scroll">
+    <table>
+      <tr><th>平台</th><th>角色</th><th>主要受眾</th><th>內容形式</th><th>頻率</th></tr>
+      <tr><td><strong>Facebook</strong><br><span style="font-size:.8rem;color:var(--muted)">主陣地</span></td><td>衛教擴散＋活動報名＋家屬社群</td><td>40–65 歲家屬、照顧者、資深會員</td><td>輪播圖卡、活動貼文、直播</td><td>週 2–3 則</td></tr>
+      <tr><td><strong>Instagram</strong><br><span style="font-size:.8rem;color:var(--muted)">品牌櫥窗</span></td><td>視覺化衛教＋年輕 OT／學生招募與認同</td><td>20–40 歲 OT、相關科系學生、年輕家庭</td><td>Reels 短影音、圖卡、限時動態（投票/問答）</td><td>週 1–2 則＋限動</td></tr>
+      <tr><td><strong>Threads</strong><br><span style="font-size:.8rem;color:var(--muted)">聲量引擎</span></td><td>時事快評＋議題對話（自然觸及高、適合文字）</td><td>OT 同溫層、醫療照護從業者、關注政策者</td><td>短文、時事評論、現場觀察、轉發互動</td><td>週 2–3 則（輕量）</td></tr>
+    </table>
+    </div>
+    <div class="callout" style="margin-bottom:0">同一素材跨平台改寫：專欄 1 篇 → FB 輪播圖卡 → IG Reels／圖卡精華 → Threads 觀點短文＋文末互動提問。<strong>各平台用原生格式，不互貼連結。</strong></div>
+  </div>
+  <div class="grid c2">
+    <div class="card">
+      <h3 style="margin-top:0">內容配比（以 FB 為基準）</h3>
+      <table>
+        <tr><th>類型</th><th>占比</th></tr>
+        <tr><td>🩺 民眾衛教圖卡（復能、防跌、失智延緩、輔具）</td><td>40%</td></tr>
+        <tr><td>📰 專欄內容改寫＋政策解讀</td><td>25%</td></tr>
+        <tr><td>📅 課程/認證/活動宣傳（LV2·LV3、社區交流）</td><td>20%</td></tr>
+        <tr><td>🔥 時事與節慶互動（世界OT日、失智月、重陽）</td><td>15%</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">格式與經營原則</h3>
+      <ul class="clean">
+        <li>衛教內容以「輪播圖卡（5–8張）」為主力，易存易分享</li>
+        <li>三平台共用視覺模板與 hashtag（#社區長照 #職能治療 #復能）</li>
+        <li>每月 1 支短影音：OT 現場 30–60 秒，FB／IG Reels 同步發布</li>
+        <li>活動前中後三段式操作：預告 → 直播/限動 → 花絮回顧</li>
+        <li>Threads 由委員輪值發文，維持「人味」與對話感</li>
+        <li>回覆留言 48 小時內，常見問題整理成 FAQ 貼文</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="collab">
+  <div class="sec-label">05 PARTNERS</div>
+  <h2>OT 社群夥伴協作</h2>
+  <div class="card">
+    <p style="margin-bottom:14px">台灣已有多個經營成熟的 OT 自媒體。與其從零累積，不如<strong>以學會的公信力為交換，與夥伴互蒙其利</strong>：學會提供官方背書、專欄舞台與課程資源；夥伴提供既有流量與內容產能。以下為初步盤點（長照相關度由高至低）：</p>
+    <div class="table-scroll">
+    <table>
+      <tr><th>帳號</th><th>平台</th><th>定位</th><th>合作切入點</th></tr>
+      <tr><td><a href="https://www.facebook.com/relive.OT" target="_blank">吱吱復健</a>（楊昀霖 OT）</td><td>FB／IG／YT／Line社群</td><td>中風、失智、帕金森復能與長照照顧技巧，另有多個照護交流社團</td><td>聯名衛教圖卡、專欄邀稿、社團內分享學會內容</td></tr>
+      <tr><td><a href="https://www.instagram.com/longcarebusiness/" target="_blank">長照創業筆記</a></td><td>IG</td><td>長照領域創業與制度觀察</td><td>政策類議題對談、Threads 互動</td></tr>
+      <tr><td><a href="https://www.instagram.com/otlivewithelderly/" target="_blank">執職之手 與職偕老</a></td><td>IG</td><td>社區高齡職能治療</td><td>社區據點現場內容互推</td></tr>
+      <tr><td><a href="https://www.instagram.com/luke_otat/" target="_blank">鋁罐老師藝職療</a></td><td>IG</td><td>藝術治療 × 社區活動設計</td><td>據點活動設計系列共創</td></tr>
+      <tr><td><a href="https://www.instagram.com/ot_pingtung/" target="_blank">屏東囝仔 黃聖祐 OT</a>、<a href="https://www.instagram.com/hoshengplayforfun/" target="_blank">呵勝</a>、<a href="https://www.instagram.com/eating_ot/" target="_blank">王老師藝療日常</a> 等</td><td>IG</td><td>社區 OT 現場實務</td><td>「社區裡的 OT」群像系列、世界 OT 日接力</td></tr>
+      <tr><td><a href="https://www.facebook.com/OTLillycom/" target="_blank">OT莉莉當媽媽</a></td><td>FB（5萬+）／IG／Podcast</td><td>以親子為主，但為 OT 圈最大自媒體之一</td><td>Podcast 專訪學會談長照 3.0、三明治世代照顧議題</td></tr>
+      <tr><td>各縣市職能治療師公會粉專</td><td>FB</td><td>在地會員與活動</td><td>課程與活動訊息聯播、在地故事供稿</td></tr>
+    </table>
+    </div>
+    <h3>合作形式（由輕到重）</h3>
+    <ul class="clean">
+      <li><strong>互推轉發</strong>：學會與夥伴互相分享貼文、Threads 引用回覆（零成本，先建立關係）</li>
+      <li><strong>接力企劃</strong>：世界 OT 日「#社區裡的OT」多帳號圖卡接力、失智月聯合衛教週</li>
+      <li><strong>聯名內容</strong>：共同掛名圖卡系列、聯名直播／Podcast 對談（學會官方 × KOL 人氣）</li>
+      <li><strong>專欄邀稿</strong>：邀請夥伴為學會 Ankecare 專欄供稿，備註作者來源，雙方各取曝光</li>
+    </ul>
+    <div class="callout">執行要點：先由行銷負責人逐一私訊建立聯繫，建立「OT 社群夥伴 Line 群」，每季一次聯合企劃即可，重質不重量。名單將持續盤點更新（含 Threads 活躍帳號）。</div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="sec-label">06 AI</div>
+  <h2>AI 內容產製引擎</h2>
+  <div class="card">
+    <p style="margin-bottom:14px">行銷量能有限，<strong>用 AI 放大產出、用治療師專業把關品質</strong>。操作模式可參考行銷負責人個人粉專 <a href="https://www.facebook.com/profile.php?id=100063748491881" target="_blank">「鍾孟修Matt-職能治療師」</a> 的實作經驗，複製到學會帳號規模化執行。</p>
+    <div class="grid c2">
+      <div class="card" style="margin-bottom:0">
+        <h3 style="margin-top:0">📚 健康促進教案庫</h3>
+        <p style="font-size:.9rem">AI 協助生成社區據點教案初稿（延緩失能活動設計、認知促進教材、團體方案），經委員審定後掛「學會出品」，開放會員與據點下載。<strong>教案庫本身就是導流磁鐵</strong>——下載留資料，累積名單。</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <h3 style="margin-top:0">🌐 主題衛教網頁與小工具</h3>
+        <p style="font-size:.9rem">用 AI 快速製作單頁衛教網站、活動報名頁與互動測驗（如「長輩防跌居家檢核」自評工具），比圖卡承載更多資訊，也可供社群導流落地。</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <h3 style="margin-top:0">🔬 研究快譯分享</h3>
+        <p style="font-size:.9rem">AI 摘要國際期刊與長照研究 → 每月「研究快譯」圖卡／短文，建立學會的學術權威感，也是 Threads 的優質素材。</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <h3 style="margin-top:0">✍️ 圖卡與貼文草稿</h3>
+        <p style="font-size:.9rem">AI 產生貼文初稿與圖卡文案 → 治療師審核修訂 → 套用視覺模板輸出，將單則內容製作時間從數小時壓到 30 分鐘內。</p>
+      </div>
+    </div>
+    <div class="callout">品管原則：<strong>AI 產出一律經職能治療師專業審定後才發布</strong>，教案與衛教內容標註審定者姓名，維護學會公信力。</div>
+  </div>
+</section>
+
+<section id="topics">
+  <div class="sec-label">07 CONTENT</div>
+  <h2>議題庫（可依分類篩選）</h2>
+  <div class="filters">
+    <button class="active" data-f="all">全部</button>
+    <button data-f="role">OT 的社區角色</button>
+    <button data-f="edu">民眾衛教</button>
+    <button data-f="policy">政策與制度</button>
+    <button data-f="trend">時事與節點</button>
+  </div>
+  <div class="topics" id="topicGrid">
+    <div class="topic" data-c="role"><span class="cat role">OT 角色</span><h4>復能不是復健：職能治療師到你家做什麼？</h4><p>用一個居家復能案例說清楚「訓練生活能力」與傳統復健的差異。</p><div class="fit">▸ 專欄首發文＋粉專圖卡系列</div></div>
+    <div class="topic" data-c="role"><span class="cat role">OT 角色</span><h4>巷弄長照站裡的 OT：延緩失能課程如何設計</h4><p>介紹 LV2/LV3 課程與社區指導教師制度，順勢為委員會課程招生導流。</p><div class="fit">▸ 專欄＋課程宣傳連動</div></div>
+    <div class="topic" data-c="role"><span class="cat role">OT 角色</span><h4>日照中心的一天：活動不是「帶團康」</h4><p>揭示活動設計背後的評估邏輯：認知、動作、社交參與分級。</p><div class="fit">▸ 短影音＋圖卡</div></div>
+    <div class="topic" data-c="role"><span class="cat role">OT 角色</span><h4>從醫院到家門口：出院準備中的 OT</h4><p>呼應長照 3.0「完善出院準備、積極長照復能」，展現轉銜價值。</p><div class="fit">▸ 專欄（政策連結度高）</div></div>
+    <div class="topic" data-c="role"><span class="cat role">OT 角色</span><h4>輔具評估與居家無障礙改造實錄</h4><p>Before/After 對比最有感，示範輔具補助申請流程。</p><div class="fit">▸ 輪播圖卡（高分享潛力）</div></div>
+    <div class="topic" data-c="edu"><span class="cat edu">民眾衛教</span><h4>長輩在家跌一次就回不去？防跌居家檢核 5 招</h4><p>玄關、浴室、臥室逐區檢核表，做成可下載檢核圖卡。</p><div class="fit">▸ 粉專主力衛教系列</div></div>
+    <div class="topic" data-c="edu"><span class="cat edu">民眾衛教</span><h4>延緩失智從生活做起：買菜、煮飯都是認知訓練</h4><p>把認知促進「生活化」，破除「玩桌遊才是訓練」迷思。</p><div class="fit">▸ 圖卡＋專欄各一篇</div></div>
+    <div class="topic" data-c="edu"><span class="cat edu">民眾衛教</span><h4>照顧者也需要被照顧：喘息服務怎麼用</h4><p>連結長照喘息給付，情感面切入、互動率高。</p><div class="fit">▸ 粉專貼文＋FAQ</div></div>
+    <div class="topic" data-c="edu"><span class="cat edu">民眾衛教</span><h4>爸媽退休後越來越退縮？意義活動處方箋</h4><p>OT 獨有的「職能參與」視角：從角色與興趣重建生活。</p><div class="fit">▸ 專欄（差異化論述）</div></div>
+    <div class="topic" data-c="edu"><span class="cat edu">民眾衛教</span><h4>高齡爸媽還能開車嗎？OT 談高齡駕駛評估</h4><p>換照議題每年必上新聞，OT 可提供專業評估觀點。</p><div class="fit">▸ 時事連動衛教文</div></div>
+    <div class="topic" data-c="policy"><span class="cat policy">政策制度</span><h4>長照 3.0 上路：家屬版白話懶人包</h4><p>申請資格、四大服務包、1966 專線流程圖解。</p><div class="fit">▸ 輪播圖卡（旗艦內容）</div></div>
+    <div class="topic" data-c="policy"><span class="cat policy">政策制度</span><h4>長照 3.0 八大重點裡，OT 的位置在哪？</h4><p>寫給體系內讀者：共生社區、復能、智慧照顧的 OT 切入點。</p><div class="fit">▸ 專欄（產業讀者）</div></div>
+    <div class="topic" data-c="policy"><span class="cat policy">政策制度</span><h4>復能服務給付解析：民眾怎麼申請、OT 怎麼參與</h4><p>雙版本：家屬版圖卡＋專業版專欄。</p><div class="fit">▸ 專欄＋圖卡</div></div>
+    <div class="topic" data-c="policy"><span class="cat policy">政策制度</span><h4>健康台灣深耕計畫與社區照護：學會的參與藍圖</h4><p>連動委員會「健康台灣深耕計畫」工作項目，對外揭示學會佈局。</p><div class="fit">▸ 專欄（配合委員會進度）</div></div>
+    <div class="topic" data-c="trend"><span class="cat trend">時事節點</span><h4>超高齡社會數據圖卡：每 5 人就有 1 位長者</h4><p>數據型內容建立權威感，適合當系列開場。</p><div class="fit">▸ 單圖＋數據系列</div></div>
+    <div class="topic" data-c="trend"><span class="cat trend">時事節點</span><h4>9 月國際失智症月：OT 的失智照護專題</h4><p>全月系列：專欄 1 篇＋圖卡 4 則＋短影音 1 支。</p><div class="fit">▸ 9 月主題月</div></div>
+    <div class="topic" data-c="trend"><span class="cat trend">時事節點</span><h4>10/27 世界職能治療日：社區裡的 OT 群像</h4><p>徵集會員現場照片故事，UGC 形式擴大參與。</p><div class="fit">▸ 10 月主題月</div></div>
+    <div class="topic" data-c="trend"><span class="cat trend">時事節點</span><h4>11/1 社區交流活動：預告 × 直播 × 花絮</h4><p>配合委員會實體＋線上交流，三段式宣傳操作。</p><div class="fit">▸ 活動行銷（委員會連動）</div></div>
+    <div class="topic" data-c="trend"><span class="cat trend">時事節點</span><h4>AI 與智慧照顧：科技進入社區，OT 怎麼看</h4><p>呼應長照 3.0 智慧照顧軸線與媒體熱點（AI 眼鏡、照護機器人）。</p><div class="fit">▸ 專欄（話題性高）</div></div>
+    <div class="topic" data-c="trend"><span class="cat trend">時事節點</span><h4>重陽節/祖父母節：三代同堂的活動處方</h4><p>節慶流量搭配輕衛教，適合互動抽獎。</p><div class="fit">▸ 節慶貼文</div></div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="sec-label">08 SCHEDULE</div>
+  <h2>執行時程（2026 下半年）</h2>
+  <div class="card">
+    <div class="timeline">
+      <div class="t-item"><div class="when">7 月</div><div class="what">學會提供 5 項資料 → 轉交媒體窗口建立專欄作者頁面；確認交稿窗口；建立社群視覺模板與 hashtag；<strong>確認 IG／Threads 帳號建置</strong>；啟動長照 OT 邀稿與夥伴粉專盤點</div></div>
+      <div class="t-item"><div class="when">8 月</div><div class="what">專欄頁面上線、<strong>首篇專欄刊出</strong>（建議：「復能不是復健」或「長照 3.0 裡 OT 的位置」）；FB／IG／Threads 啟動固定發文節奏；聯繫夥伴帳號建立合作關係；測試各種導流做法</div></div>
+      <div class="t-item"><div class="when">9 月</div><div class="what">國際失智症月主題月（可邀夥伴聯合衛教週）；長照 3.0 家屬版懶人包圖卡系列；檢視導流測試數據；<strong>AI 教案庫試作 3–5 份</strong>送委員審定</div></div>
+      <div class="t-item"><div class="when">10 月</div><div class="what">10/27 世界職能治療日：「#社區裡的OT」多帳號圖卡接力＋會員群像 UGC；11/1 社區交流活動預告開跑</div></div>
+      <div class="t-item"><div class="when">11 月</div><div class="what">11/1 社區交流（宏勳副主委實體／宗勳委員線上）直播與花絮；專欄刊出社區交流觀察文</div></div>
+      <div class="t-item"><div class="when">11–12 月</div><div class="what">Ankecare 作品集達 4–5 篇後，<strong>啟動《聯合報》系專欄接洽</strong>；AI 教案庫正式上線開放下載</div></div>
+      <div class="t-item"><div class="when">12 月</div><div class="what">年度成效回顧報告提交委員會；規劃 2027 年度議題日曆與徵稿</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kpi">
+  <div class="sec-label">09 KPI</div>
+  <h2>成效指標（2026 年底檢核）</h2>
+  <div class="grid c3">
+    <div class="card kpi"><div class="n">5+ 篇</div><div class="l">Ankecare 專欄刊出（8–12 月每月至少 1 篇）</div></div>
+    <div class="card kpi"><div class="n">3 平台</div><div class="l">FB／IG／Threads 固定發文節奏達成率 ≥ 80%</div></div>
+    <div class="card kpi"><div class="n">+20%</div><div class="l">社群總追蹤數半年成長目標（含新開 IG／Threads 基期建立）</div></div>
+    <div class="card kpi"><div class="n">≥ 5%</div><div class="l">衛教圖卡平均互動率（讚＋分享＋留言/觸及）</div></div>
+    <div class="card kpi"><div class="n">3 檔</div><div class="l">主題月完整執行（失智月、OT日、社區交流）</div></div>
+    <div class="card kpi"><div class="n">10+ 位</div><div class="l">參與供稿/供圖的長照 OT 與委員人數</div></div>
+    <div class="card kpi"><div class="n">2 檔</div><div class="l">與夥伴粉專完成聯合企劃（接力/聯名/對談）</div></div>
+    <div class="card kpi"><div class="n">5 份</div><div class="l">AI 協作健康促進教案（經審定）上線開放下載</div></div>
+    <div class="card kpi"><div class="n">1 案</div><div class="l">《聯合報》系專欄完成初步接洽並回報委員會</div></div>
+  </div>
+  <div class="callout">KPI 首重「穩定產出」而非爆紅。第一年目標是把制度建起來：有窗口、有節奏、有模板、有作者群。</div>
+</section>
+
+<section id="todo">
+  <div class="sec-label">10 NEXT</div>
+  <h2>待學會／委員會協助事項</h2>
+  <div class="card">
+    <div class="table-scroll">
+    <table>
+      <tr><th>事項</th><th>負責/協助</th><th>期限</th></tr>
+      <tr><td>提供專欄作者頁 5 項資料（Logo、簡介、地址、電話、Email）</td><td>學會秘書處</td><td>7 月中</td></tr>
+      <tr><td>指定專欄交稿窗口（後續與媒體 Line 直接對接）</td><td>學會秘書處</td><td>7 月中</td></tr>
+      <tr><td>確認社群帳號（FB／IG／Threads）發文權限與審核流程</td><td>秘書處 × 行銷負責人</td><td>7 月底</td></tr>
+      <tr><td>長照 OT 邀稿名單與輪值供稿表（8–12 月每月 1 篇，備註作者來源）</td><td>長照委員會</td><td>8 月會議</td></tr>
+      <tr><td>核可「OT 社群夥伴協作」方向，授權行銷負責人對外聯繫</td><td>長照委員會</td><td>8 月會議</td></tr>
+      <tr><td>核可 AI 內容產製與審定流程（教案、圖卡、研究快譯）</td><td>長照委員會</td><td>8 月會議</td></tr>
+      <tr><td>授權行銷負責人探詢《聯合報》系專欄合作條件</td><td>長照委員會</td><td>8 月會議</td></tr>
+      <tr><td>11/1 社區交流活動資訊與素材（供宣傳使用）</td><td>宏勳副主委、宗勳委員</td><td>9 月底</td></tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    社團法人臺灣職能治療學會 長照委員會｜「社區長照」行銷規劃提案<br>
+    <a href="https://www.ankecare.com/columnist/list" target="_blank">創新照顧 ĀnkěCare 專欄一覽</a> ·
+    <a href="https://www.facebook.com/profile.php?id=100064829017186" target="_blank">學會 Facebook 粉絲專頁</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.filters button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filters button').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var f=btn.dataset.f;
+    document.querySelectorAll('#topicGrid .topic').forEach(function(t){
+      t.style.display=(f==='all'||t.dataset.c===f)?'':'none';
+    });
+  });
+});
+// 捲動時高亮目前章節（scrollspy）
+(function(){
+  var links=document.querySelectorAll('nav.toc a');
+  var map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('active')});
+        var a=map[e.target.id];
+        if(a){a.classList.add('active');a.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});}
+      }
+    });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('main section').forEach(function(s){obs.observe(s)});
+})();
+function copyLetter(){
+  var text=document.getElementById('letterText').innerText;
+  navigator.clipboard.writeText(text).then(function(){
+    var b=document.querySelector('.copy-btn');b.textContent='已複製 ✓';
+    setTimeout(function(){b.textContent='複製信件內容';},2000);
+  });
+}
+</script>
+</body>
+</html>
