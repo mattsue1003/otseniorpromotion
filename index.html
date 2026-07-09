@@ -433,20 +433,24 @@ document.querySelectorAll('.filters button').forEach(function(btn){
     });
   });
 });
-// 捲動時高亮目前章節（scrollspy）
+// 捲動時高亮目前章節（scrollspy）— 只水平捲動導覽列本身，不干擾頁面垂直捲動
 (function(){
   var links=document.querySelectorAll('nav.toc a');
+  var navWrap=document.querySelector('nav.toc .wrap');
   var map={};
   links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  var current=null;
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
-        links.forEach(function(a){a.classList.remove('active')});
         var a=map[e.target.id];
-        if(a){a.classList.add('active');a.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});}
+        if(!a||a===current)return;
+        if(current)current.classList.remove('active');
+        a.classList.add('active');current=a;
+        navWrap.scrollTo({left:a.offsetLeft-navWrap.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});
       }
     });
-  },{rootMargin:'-30% 0px -60% 0px'});
+  },{rootMargin:'-25% 0px -65% 0px'});
   document.querySelectorAll('main section').forEach(function(s){obs.observe(s)});
 })();
 function copyLetter(){
