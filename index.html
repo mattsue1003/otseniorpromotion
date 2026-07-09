@@ -23,8 +23,8 @@
   .hero p.sub{opacity:.92;max-width:640px}
   .hero .meta{margin-top:20px;font-size:.9rem;opacity:.85}
 
-  nav.toc{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.04)}
-  nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none}
+  nav.toc{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:50;box-shadow:0 1px 4px rgba(0,0,0,.04);transform:translateZ(0);will-change:transform}
+  nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x}
   nav.toc .wrap::-webkit-scrollbar{display:none}
   nav.toc a{white-space:nowrap;padding:14px;font-size:.92rem;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;transition:color .15s}
   nav.toc a:hover,nav.toc a.active{color:var(--primary);border-bottom-color:var(--primary)}
@@ -433,13 +433,18 @@ document.querySelectorAll('.filters button').forEach(function(btn){
     });
   });
 });
-// 捲動時高亮目前章節（scrollspy）— 只水平捲動導覽列本身，不干擾頁面垂直捲動
+// 捲動時高亮目前章節（scrollspy）
+// 手機優化：頁面捲動期間只切換高亮（極輕量），導覽列的水平置中等「停止捲動後」才執行，避免與觸控捲動互搶
 (function(){
   var links=document.querySelectorAll('nav.toc a');
   var navWrap=document.querySelector('nav.toc .wrap');
   var map={};
   links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
-  var current=null;
+  var current=null,idleTimer=null;
+  function centerNav(){
+    if(!current)return;
+    navWrap.scrollTo({left:current.offsetLeft-navWrap.clientWidth/2+current.offsetWidth/2,behavior:'smooth'});
+  }
   var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
@@ -447,11 +452,15 @@ document.querySelectorAll('.filters button').forEach(function(btn){
         if(!a||a===current)return;
         if(current)current.classList.remove('active');
         a.classList.add('active');current=a;
-        navWrap.scrollTo({left:a.offsetLeft-navWrap.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});
       }
     });
   },{rootMargin:'-25% 0px -65% 0px'});
   document.querySelectorAll('main section').forEach(function(s){obs.observe(s)});
+  // 停止捲動 200ms 後才移動導覽列，捲動過程零干擾
+  window.addEventListener('scroll',function(){
+    clearTimeout(idleTimer);
+    idleTimer=setTimeout(centerNav,200);
+  },{passive:true});
 })();
 function copyLetter(){
   var text=document.getElementById('letterText').innerText;
